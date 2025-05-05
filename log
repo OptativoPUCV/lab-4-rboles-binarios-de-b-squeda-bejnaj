@@ -212,3 +212,17 @@ Sun, May  4, 2025  9:46:59 PM:
  1 file changed, 14 insertions(+), 1 deletion(-)
  tests:  0|0
 3ecf1df
+Sun, May  4, 2025  9:49:01 PM: 
+ treemap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Compilation failed
+In file included from test.c:4:
+treemap.c: In function 'upperBound':
+treemap.c:126:28: error: assignment to 'Pair *' from incompatible pointer type 'TreeNode *' [-Wincompatible-pointer-types]
+  126 |             MayorQueActual = actual;
+      |                            ^
+test.c: At top level:
+test.c:6:8: warning: '_strdup' redeclared without dllimport attribute: previous dllimport ignored [-Wattributes]
+    6 | char * _strdup(const char * str) {
+      |        ^~~~~~~
+60ac79d
