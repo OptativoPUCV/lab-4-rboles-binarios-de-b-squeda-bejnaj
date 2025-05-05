@@ -55,6 +55,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
         return;
     }
 
+    // recorrer el arbol binario
     while (actual != NULL){
         if (is_equal(tree, nuevo->pair->key, actual->pair->key)) return;
         else if (tree->lower_than(nuevo->pair->key, actual->pair->key) == 1) {
@@ -99,6 +100,15 @@ void eraseTreeMap(TreeMap * tree, void* key){
 }
 
 Pair * searchTreeMap(TreeMap * tree, void* key) {
+    TreeNode *actual = tree->root;
+    while (actual != NULL){
+        if (is_equal(tree, key, actual->pair->key)){
+            tree->current = actual;
+            return actual->pair;
+        }
+        else if (tree->lower_than(key, actual->pair->key) == 1) actual = actual->left;
+        else actual = actual->right;
+    }
     return NULL;
 }
 
