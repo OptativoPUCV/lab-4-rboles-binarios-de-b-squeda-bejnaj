@@ -135,3 +135,23 @@ Sun, May  4, 2025  8:41:28 PM:
  tests:  6|6
 total_score: 15/70
 68045b1
+Sun, May  4, 2025  8:49:41 PM: 
+ treemap.c | 45 ++++++++++++++++++---------------------------
+ 1 file changed, 18 insertions(+), 27 deletions(-)
+Compilation failed
+test.c: In function 'insertTreeMap':
+test.c:503:5: warning: 'main' is normally a non-static function [-Wmain]
+  503 | int main( int argc, char *argv[] ) {
+      |     ^~~~
+test.c:606:1: error: expected declaration or statement at end of input
+  606 | }
+      | ^
+In file included from test.c:4:
+treemap.c:50:15: warning: unused variable 'padre' [-Wunused-variable]
+   50 |     TreeNode *padre;
+      |               ^~~~~
+test.c: At top level:
+test.c:503:5: warning: 'main' defined but not used [-Wunused-function]
+  503 | int main( int argc, char *argv[] ) {
+      |     ^~~~
+82ef727

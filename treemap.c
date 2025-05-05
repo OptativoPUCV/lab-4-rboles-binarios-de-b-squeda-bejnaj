@@ -46,44 +46,35 @@ TreeMap * createTreeMap(int (*lower_than) (void* key1, void* key2)) {
 
 void insertTreeMap(TreeMap * tree, void* key, void * value) {
     TreeNode *nuevo = createTreeNode(key, value);
-    if (nuevo == NULL) return;
-
-    if (tree->root == NULL) {
-        // Tree is empty, make the new node the root
+    TreeNode *actual = tree->root;
+    TreeNode *padre;
+    //revisa si esta vacio
+    if (actual == NULL){
         tree->root = nuevo;
         tree->current = nuevo;
-        nuevo->parent = NULL; // Root has no parent
+        nuevo->parent = NULL;
         return;
     }
-
-    TreeNode *actual = tree->root;
-    TreeNode *parent = NULL;
-
-    // Traverse the tree to find the correct position
     while (actual != NULL) {
-        parent = actual;
         if (tree->lower_than(key, actual->pair->key)) {
+            // Si el nuevo nodo debe ir a la izquierda
+            if (actual->left == NULL) {
+                actual->left = nuevo;
+                nuevo->parent = actual;
+                tree->current = nuevo; // Actualiza el nodo actual
+                return;
+            }
             actual = actual->left;
         } else if (tree->lower_than(actual->pair->key, key)) {
+            // Si el nuevo nodo debe ir a la derecha
+            if (actual->right == NULL) {
+                actual->right = nuevo;
+                nuevo->parent = actual;
+                tree->current = nuevo; // Actualiza el nodo actual
+                return;
+            }
             actual = actual->right;
-        } else {
-            // Key already exists, do not insert
-            free(nuevo->pair);
-            free(nuevo);
-            return;
         }
-    }
-
-    // Insert the new node as a child of the parent
-    nuevo->parent = parent;
-    if (tree->lower_than(key, parent->pair->key)) {
-        parent->left = nuevo;
-    } else {
-        parent->right = nuevo;
-    }
-
-    // Update tree->current to the newly inserted node
-    tree->current = nuevo;
 }
 
 TreeNode * minimum(TreeNode * x){
