@@ -123,7 +123,7 @@ Pair * upperBound(TreeMap * tree, void* key) {
         }
         else if (tree->lower_than(key, actual->pair->key) == 1){
             actual = actual->left;
-            MayorQueActual = actual;
+            MayorQueActual = actual->pair;
         }
         else actual = actual->right;
     }
