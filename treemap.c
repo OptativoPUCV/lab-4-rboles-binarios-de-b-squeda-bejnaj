@@ -163,9 +163,16 @@ Pair * firstTreeMap(TreeMap * tree) {
 
 Pair * nextTreeMap(TreeMap * tree) {
     TreeNode *siguiente = tree->current;
-    if (siguiente->right == NULL){
+    // si hay algo a la derecha
+    if (siguiente->right != NULL){
         siguiente = tree->current->parent;
+        while (siguiente->left != NULL) siguiente = siguiente->left;
+        tree->current = siguiente;
+        return siguiente->pair;
     }
-    tree->current = siguiente;
-    return siguiente->pair;
+    // si no hay nada a la derecha
+    while (siguiente->parent != NULL && siguiente == siguiente->parent->right) siguiente = siguiente->parent;
+
+    tree->current = siguiente->parent;
+    return tree->current->pair;
 }
