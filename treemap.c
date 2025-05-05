@@ -136,5 +136,6 @@ Pair * firstTreeMap(TreeMap * tree) {
 }
 
 Pair * nextTreeMap(TreeMap * tree) {
-    return NULL;
+    TreeNode *siguiente = tree->current->right;
+    return siguiente->pair;
 }
