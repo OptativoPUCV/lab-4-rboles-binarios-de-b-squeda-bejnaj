@@ -72,6 +72,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
         }
         actual = actual->right;
     }
+    else return;
     }
 }
 
