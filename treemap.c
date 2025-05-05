@@ -114,7 +114,20 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
 
 
 Pair * upperBound(TreeMap * tree, void* key) {
-    return NULL;
+    Pair *MayorQueActual;
+    TreeNode *actual = tree->root;
+    while (actual != NULL){
+        if (is_equal(tree, key, actual->pair->key)){
+            tree->current = actual;
+            return actual->pair;
+        }
+        else if (tree->lower_than(key, actual->pair->key) == 1){
+            actual = actual->left;
+            Pair MayorQueActual;
+        }
+        else actual = actual->right;
+    }
+    return MayorQueActual;
 }
 
 Pair * firstTreeMap(TreeMap * tree) {
